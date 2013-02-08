@@ -1,4 +1,4 @@
-php-date-interval
-=================
+DateInterval
+============
 
 Provides additional functionality to the DateInterval class.
