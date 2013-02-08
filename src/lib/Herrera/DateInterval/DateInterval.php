@@ -73,7 +73,7 @@ class DateInterval extends \DateInterval
     }
 
     /**
-     * Returns the total number of seconds in the interval specification.
+     * Returns the total number of seconds in the interval.
      *
      * @param DateInterval $interval The date interval.
      *
