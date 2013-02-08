@@ -1,0 +1,26 @@
+{
+    "name": "herrera-io/date-interval",
+    "description": "Provides additional functionality to the DateInterval class.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Herrera",
+            "email": "kevin@herrera.io"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Herrera\\DateInterval": "src/lib"
+        }
+    },
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "vendor-dir": "src/vendors"
+    }
+}
