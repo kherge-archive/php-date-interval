@@ -8,10 +8,13 @@ Provides additional functionality to the DateInterval class.
 Summary
 -------
 
-The library's `DateInterval` class adds new functionality:
+The `DateInterval` class builds on the existing `DateInterval` class provided by PHP. With the new class, you may
 
-- convert `DateInterval` to [interval spec](http://php.net/manual/en/dateinterval.construct.php)
-- convert `DateInterval` to seconds
+- convert `DateInterval` to the [interval spec](http://php.net/manual/en/dateinterval.construct.php)
+- convert `DateInterval` to the number of seconds
+    - convert back to `DateInterval` from the number of seconds
+
+> The conversion to seconds requires [a bit of explaining](https://github.com/herrera-io/php-date-interval/wiki/API#wiki-toSeconds).
 
 Installation
 ------------
