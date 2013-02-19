@@ -16,7 +16,8 @@ class DateIntervalTest extends TestCase
             array('86400', 'P1D'),
             array('2629740', 'P1M'),
             array('31556874', 'P1Y'),
-            array('34276675', 'P1Y1M1DT1H1M1S')
+            array('34276675', 'P1Y1M1DT1H1M1S'),
+            array('2056600500', 'P65Y2M1DT16H3M30S'),
         );
     }
 
@@ -31,6 +32,24 @@ class DateIntervalTest extends TestCase
             array('P1Y'),
             array('P1Y1M1DT1H1M1S')
         );
+    }
+
+    /**
+     * @dataProvider getSeconds
+     */
+    public function testFromSeconds($seconds, $spec)
+    {
+        $interval = DateInterval::fromSeconds($seconds);
+
+        $this->assertEquals($spec, $interval->toSpec());
+    }
+
+    public function testFromSecondsCompare()
+    {
+        $a = DateInterval::fromSeconds('2056600500');
+        $b = new DateInterval ('P60Y60M60DT60H60M60S');
+
+        $this->assertEquals($a->toSeconds(), $b->toSeconds());
     }
 
     public function testToString()

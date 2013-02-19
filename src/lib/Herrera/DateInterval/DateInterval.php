@@ -73,9 +73,41 @@ class DateInterval extends \DateInterval
     }
 
     /**
+     * Returns the DateInterval instance for the number of seconds.
+     *
+     * @param integer|string $seconds The number of seconds.
+     *
+     * @return DateInterval The date interval.
+     */
+    public static function fromSeconds($seconds)
+    {
+        $interval = new static('PT0S');
+
+        foreach (array(
+            'y' => self::SECONDS_YEAR,
+            'm' => self::SECONDS_MONTH,
+            'd' => self::SECONDS_DAY,
+            'h' => self::SECONDS_HOUR,
+            'i' => self::SECONDS_MINUTE
+        ) as $property => $increment) {
+            if (-1 !== bccomp($seconds, $increment)) {
+                $count = floor(bcdiv($seconds, $increment, 1));
+
+                $interval->$property = $count;
+
+                $seconds = bcsub($seconds, bcmul($count, $increment));
+            }
+        }
+
+        $interval->s = (int) $seconds;
+
+        return $interval;
+    }
+
+    /**
      * Returns the total number of seconds in the interval.
      *
-     * @param DateInterval $interval The date interval.
+     * @param \DateInterval $interval The date interval.
      *
      * @return string The number of seconds.
      */
@@ -113,7 +145,7 @@ class DateInterval extends \DateInterval
     /**
      * Returns the interval specification.
      *
-     * @param DateInterval $interval The date interval.
+     * @param \DateInterval $interval The date interval.
      *
      * @return string The interval specification.
      */
