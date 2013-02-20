@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>DateInterval by herrera-io</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>DateInterval</h1>
+        <p>Provides additional functionality to the DateInterval class.</p>
+
+        <p class="view"><a href="https://github.com/herrera-io/php-date-interval">View the Project on GitHub <small>herrera-io/php-date-interval</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/herrera-io/php-date-interval/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/herrera-io/php-date-interval/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/herrera-io/php-date-interval">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>DateInterval</h1>
+
+<p><a href="http://travis-ci.org/herrera-io/php-date-interval"><img src="https://travis-ci.org/herrera-io/php-date-interval.png" alt="Build Status"></a></p>
+
+<p>Provides additional functionality to the DateInterval class.</p>
+
+<h2>Summary</h2>
+
+<p>The <code>DateInterval</code> class builds on the existing <code>DateInterval</code> class provided by PHP. With the new class, you may</p>
+
+<ul>
+<li>convert <code>DateInterval</code> to the <a href="http://php.net/manual/en/dateinterval.construct.php">interval spec</a>
+</li>
+<li>convert <code>DateInterval</code> to the number of seconds
+
+<ul>
+<li>convert back to <code>DateInterval</code> from the number of seconds</li>
+</ul>
+</li>
+</ul><blockquote>
+<p>The conversion to seconds requires <a href="https://github.com/herrera-io/php-date-interval/wiki/API#wiki-toSeconds">a bit of explaining</a>.</p>
+</blockquote>
+
+<h2>Installation</h2>
+
+<p>Add it to your list of Composer dependencies:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>composer require herrera-io/date-interval<span class="o">=</span>1.*
+</pre></div>
+
+<h2>Usage</h2>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Herrera\DateInterval\DateInterval</span><span class="p">;</span>
+
+<span class="nv">$interval</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateInteval</span><span class="p">(</span><span class="s1">'P2H'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$interval</span><span class="o">-&gt;</span><span class="na">toSeconds</span><span class="p">();</span> <span class="c1">// "7200"</span>
+<span class="k">echo</span> <span class="nx">DateInterval</span><span class="o">::</span><span class="na">toSeconds</span><span class="p">(</span><span class="nv">$interval</span><span class="p">);</span> <span class="c1">// "7200"</span>
+
+<span class="k">echo</span> <span class="nv">$interval</span><span class="o">-&gt;</span><span class="na">toSpec</span><span class="p">();</span> <span class="c1">// "P2H"</span>
+<span class="k">echo</span> <span class="nx">DateInterval</span><span class="o">::</span><span class="na">toSpec</span><span class="p">(</span><span class="nv">$interval</span><span class="p">);</span> <span class="c1">// "P2H"</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/herrera-io">herrera-io</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
