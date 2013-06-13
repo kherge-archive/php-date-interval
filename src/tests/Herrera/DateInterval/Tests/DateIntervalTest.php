@@ -66,6 +66,16 @@ class DateIntervalTest extends TestCase
 
         $this->assertEquals($seconds, $interval->toSeconds());
     }
+    
+    public function testToSecondsUsingDays()
+    {
+        $date1 = new \DateTime('2012-06-10 12:30:00');
+        $date2 = new \DateTime('2013-06-10 13:35:05');
+        $intervalfromDiff = $date1->diff($date2);
+        
+        $interval = new DateInterval('PT0S');
+        $this->assertEquals(31539905, $interval->toSecondsUsingDays($intervalfromDiff));
+    }
 
     /**
      * @dataProvider getSpecs
