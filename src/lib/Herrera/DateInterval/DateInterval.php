@@ -126,24 +126,48 @@ class DateInterval extends \DateInterval
         if ($interval->h) {
             $seconds = bcadd($seconds, bcmul($interval->h, self::SECONDS_HOUR));
         }
-        
-        if($interval->days){
-            $seconds = bcadd($seconds, bcmul($interval->days, self::SECONDS_DAY));
+            
+        if ($interval->d) {
+            $seconds = bcadd($seconds, bcmul($interval->d, self::SECONDS_DAY));
         }
-        else{
-            
-            if ($interval->d) {
-                $seconds = bcadd($seconds, bcmul($interval->d, self::SECONDS_DAY));
-            }
+
+        if ($interval->m) {
+            $seconds = bcadd($seconds, bcmul($interval->m, self::SECONDS_MONTH));
+        }
+
+        if ($interval->y) {
+            $seconds = bcadd($seconds, bcmul($interval->y, self::SECONDS_YEAR));
+        }
+        
+        return $seconds;
+    }
     
-            if ($interval->m) {
-                $seconds = bcadd($seconds, bcmul($interval->m, self::SECONDS_MONTH));
-            }
-    
-            if ($interval->y) {
-                $seconds = bcadd($seconds, bcmul($interval->y, self::SECONDS_YEAR));
-            }
-            
+    /**
+     * Returns the total number of seconds in the interval
+     * using days as retured from DateTime::diff()
+     *
+     * @param \DateInterval $interval The date interval.
+     *
+     * @return string The number of seconds.
+     */
+    public function toSecondsUsingDays(\DateInterval $interval = null)
+    {
+        if ((null === $interval) && isset($this)) {
+            $interval = $this;
+        }
+        
+        $seconds = (string) $interval->s;
+
+        if ($interval->i) {
+            $seconds = bcadd($seconds, bcmul($interval->i, self::SECONDS_MINUTE));
+        }
+
+        if ($interval->h) {
+            $seconds = bcadd($seconds, bcmul($interval->h, self::SECONDS_HOUR));
+        }
+        
+        if($interval->days > 0) {
+            $seconds = bcadd($seconds, bcmul($interval->days, self::SECONDS_DAY));
         }
         
         return $seconds;
