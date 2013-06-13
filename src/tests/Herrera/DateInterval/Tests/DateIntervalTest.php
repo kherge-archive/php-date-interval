@@ -69,8 +69,8 @@ class DateIntervalTest extends TestCase
     
     public function testToSecondsUsingDays()
     {
-        $date1 = new DateTime('2012-06-10 12:30:00');
-        $date2 = new DateTime('2013-06-10 13:35:05');
+        $date1 = new \DateTime('2012-06-10 12:30:00');
+        $date2 = new \DateTime('2013-06-10 13:35:05');
         $intervalfromDiff = $date1->diff($date2);
         
         $interval = new DateInterval('PT0S');
