@@ -126,19 +126,26 @@ class DateInterval extends \DateInterval
         if ($interval->h) {
             $seconds = bcadd($seconds, bcmul($interval->h, self::SECONDS_HOUR));
         }
-
-        if ($interval->d) {
-            $seconds = bcadd($seconds, bcmul($interval->d, self::SECONDS_DAY));
+        
+        if($interval->days){
+            $seconds = bcadd($seconds, bcmul($interval->days, self::SECONDS_DAY));
         }
-
-        if ($interval->m) {
-            $seconds = bcadd($seconds, bcmul($interval->m, self::SECONDS_MONTH));
+        else{
+            
+            if ($interval->d) {
+                $seconds = bcadd($seconds, bcmul($interval->d, self::SECONDS_DAY));
+            }
+    
+            if ($interval->m) {
+                $seconds = bcadd($seconds, bcmul($interval->m, self::SECONDS_MONTH));
+            }
+    
+            if ($interval->y) {
+                $seconds = bcadd($seconds, bcmul($interval->y, self::SECONDS_YEAR));
+            }
+            
         }
-
-        if ($interval->y) {
-            $seconds = bcadd($seconds, bcmul($interval->y, self::SECONDS_YEAR));
-        }
-
+        
         return $seconds;
     }
 
