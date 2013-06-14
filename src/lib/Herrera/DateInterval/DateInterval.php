@@ -2,6 +2,8 @@
 
 namespace Herrera\DateInterval;
 
+use InvalidArgumentException;
+
 /**
  * Adds functionality to the DateInterval class.
  *
@@ -126,7 +128,7 @@ class DateInterval extends \DateInterval
         if ($interval->h) {
             $seconds = bcadd($seconds, bcmul($interval->h, self::SECONDS_HOUR));
         }
-            
+
         if ($interval->d) {
             $seconds = bcadd($seconds, bcmul($interval->d, self::SECONDS_DAY));
         }
@@ -138,24 +140,22 @@ class DateInterval extends \DateInterval
         if ($interval->y) {
             $seconds = bcadd($seconds, bcmul($interval->y, self::SECONDS_YEAR));
         }
-        
+
         return $seconds;
     }
-    
+
     /**
-     * Returns the total number of seconds in the interval
-     * using days as retured from DateTime::diff()
+     * Returns the total number of seconds in the interval using `days` as
+     * returned by `DateTime::diff()`.
      *
      * @param \DateInterval $interval The date interval.
      *
      * @return string The number of seconds.
+     *
+     * @throws InvalidArgumentException If "days" is not set.
      */
-    public function toSecondsUsingDays(\DateInterval $interval = null)
+    public static function toSecondsUsingDays(\DateInterval $interval)
     {
-        if ((null === $interval) && isset($this)) {
-            $interval = $this;
-        }
-        
         $seconds = (string) $interval->s;
 
         if ($interval->i) {
@@ -165,11 +165,15 @@ class DateInterval extends \DateInterval
         if ($interval->h) {
             $seconds = bcadd($seconds, bcmul($interval->h, self::SECONDS_HOUR));
         }
-        
-        if($interval->days > 0) {
+
+        if ((false !== $interval->days) && (0 <= $interval->days)) {
             $seconds = bcadd($seconds, bcmul($interval->days, self::SECONDS_DAY));
+        } else {
+            throw new InvalidArgumentException(
+                'The "days" property is not set.'
+            );
         }
-        
+
         return $seconds;
     }
 
