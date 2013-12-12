@@ -113,7 +113,7 @@ class DateInterval extends \DateInterval
      *
      * @return string The number of seconds.
      */
-    public function toSeconds(\DateInterval $interval = null)
+    public static function toSeconds(\DateInterval $interval = null)
     {
         if ((null === $interval) && isset($this)) {
             $interval = $this;
